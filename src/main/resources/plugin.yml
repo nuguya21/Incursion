@@ -1,0 +1,5 @@
+name: Incursion
+version: '1.0-SNAPSHOT'
+main: com.github.nuguya21.incursion.Incursion
+api-version: '1.21'
+authors: [ nuguya21 ]
