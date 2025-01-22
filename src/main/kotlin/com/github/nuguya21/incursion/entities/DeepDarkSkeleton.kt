@@ -16,7 +16,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.Random
 
-class DeepDarkSkeleton: Spawnable {
+class DeepDarkSkeleton: Monster {
     override val name: String = "deep_dark_skeleton"
     override val type: EntityType = EntityType.SKELETON
     override val damage: Double = 10.0
@@ -31,7 +31,9 @@ class DeepDarkSkeleton: Spawnable {
     override val lootTable: LootTable = CustomLootTable(name).apply {
         addLoot(Loot(Material.BONE, 1, 5, 30.0))
         addLoot(Loot(Material.BONE_MEAL, 1, 8, 50.0))
-        addLoot(Loot(Material.BOW, 1, 1, 1.0))
+        addLoot(Loot(Material.BOW, 1, 1, 1.0).apply { modify = { itemStack ->
+            itemStack.durability = (Material.BOW.maxDurability - Random().nextInt(50) + 1).toShort()
+        } })
         addLoot(Loot(Material.ARROW, 1, 5, 25.0))
     }
 
@@ -46,7 +48,7 @@ class DeepDarkSkeleton: Spawnable {
     override fun onAttack(entity: Entity, target: Entity) {
         if (target is LivingEntity) {
             if (Random().nextDouble() * 100 < 25) {
-                target.addPotionEffect(PotionEffect(PotionEffectType.POISON, 5, 2))
+                target.addPotionEffect(PotionEffect(PotionEffectType.POISON, 7, 2))
             }
         }
     }

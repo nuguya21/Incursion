@@ -1,9 +1,8 @@
 package com.github.nuguya21.incursion.entities
 
-import com.github.nuguya21.incursion.CustomLootTable.Loot
 import com.github.nuguya21.incursion.CustomLootTable
+import com.github.nuguya21.incursion.CustomLootTable.Loot
 import com.github.nuguya21.incursion.EquipmentInfo
-import com.github.nuguya21.incursion.Spawnable
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.attribute.Attribute
@@ -14,7 +13,7 @@ import org.bukkit.loot.LootTable
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class BabySpider: Spawnable {
+class BabySpider: Monster {
     override val name: String = "baby_spider"
     override val type: EntityType = EntityType.SPIDER
     override val damage: Double = 1.0

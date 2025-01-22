@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffectType
 import java.util.*
 
 
-class Zombie: Spawnable {
+class Zombie: Monster {
     override val name: String = "zombie"
     override val type: EntityType = EntityType.ZOMBIE
     override val damage: Double = 2.0

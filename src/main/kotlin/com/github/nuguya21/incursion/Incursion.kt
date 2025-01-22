@@ -26,9 +26,12 @@ class Incursion : JavaPlugin() {
 
     companion object {
         lateinit var instance: Plugin
+        private val spawner = Spawner()
+        fun getSpawner(): Spawner {
+            return spawner
+        }
     }
 
-    val spawner = Spawner()
     private val spawnables: MutableMap<String, Class<out Spawnable>> = mutableMapOf()
     /*
     private fun loadSpawnable(folder: File) {
@@ -109,6 +112,9 @@ class Incursion : JavaPlugin() {
         if (!file.exists()) file.createNewFile()
         return file
     }
+    fun defaultSpawnerSetting() {
+
+    }
 
     override fun onEnable() {
         instance = this
@@ -129,7 +135,7 @@ class Incursion : JavaPlugin() {
             @EventHandler
             fun onSpawn(event: CreatureSpawnEvent) {
                 if (event.spawnReason == CreatureSpawnEvent.SpawnReason.NATURAL) {
-                    if (spawner.spawn(event.location)) {
+                    if (spawner.naturallyGenerate(event.location)) {
                         event.isCancelled = true
                     }
                 }
@@ -165,8 +171,6 @@ class Incursion : JavaPlugin() {
                         event.drops.addAll(drops)
                     }
                 }
-
-
             }
             @EventHandler
             fun onTargeting(event: EntityTargetEvent) {

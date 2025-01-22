@@ -12,7 +12,7 @@ import org.bukkit.loot.LootTable
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 
-class CaveSpider: Spawnable {
+class CaveSpider: Monster {
     override val name: String = "cave_spider"
     override val type: EntityType = EntityType.CAVE_SPIDER
     override val damage: Double = 1.0

@@ -29,6 +29,7 @@ class CustomLootTable(private val name: String): LootTable {
         for ((key, value) in loots) {
             if (p0!!.nextDouble() * 100 < value.probability) {
                 items.add(ItemStack(key).apply {
+                    value.modify.invoke(this)
                     amount = p0.nextInt(value.min, value.max + 1) + p0.nextInt(p1.lootingModifier)
                 })
             }
@@ -53,5 +54,7 @@ class CustomLootTable(private val name: String): LootTable {
                 this.max = min
             }
         }
+
+        var modify: (ItemStack) -> Unit = {itemStack -> TODO() }
     }
 }

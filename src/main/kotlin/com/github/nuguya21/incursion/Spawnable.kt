@@ -16,6 +16,9 @@ interface Spawnable {
     val health: Double
     val equipment: EquipmentInfo
     val lootTable: LootTable
+    fun naturallySpawn(location: Location): Entity? {
+        return spawn(location)
+    }
     fun spawn(location: Location): Entity {
         return location.world.spawnEntity(location, type ?: EntityType.ARMOR_STAND, CreatureSpawnEvent.SpawnReason.CUSTOM) {
             if (it is LivingEntity) {

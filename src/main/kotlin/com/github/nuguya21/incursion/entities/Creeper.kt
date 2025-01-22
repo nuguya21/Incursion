@@ -11,7 +11,7 @@ import org.bukkit.entity.Entity
 import org.bukkit.entity.EntityType
 import org.bukkit.loot.LootTable
 
-class Creeper: Spawnable {
+class Creeper: Monster {
     override val name: String = "creeper"
     override val type: EntityType = EntityType.CREEPER
     override val damage: Double = 10.0

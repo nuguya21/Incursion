@@ -13,7 +13,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.Random
 
-class DeepDarkSpider: Spawnable {
+class DeepDarkSpider: Monster {
     override val name: String = "deep_dark_spider"
     override val type: EntityType = EntityType.SPIDER
     override val damage: Double = 6.0
@@ -28,11 +28,11 @@ class DeepDarkSpider: Spawnable {
         if (target is LivingEntity) {
             val random = Random()
             if (random.nextDouble() * 100 < 25) {
-                target.addPotionEffect(PotionEffect(PotionEffectType.POISON, 5, 1))
+                target.addPotionEffect(PotionEffect(PotionEffectType.POISON, 9, 1))
 
             }
             if (random.nextDouble() * 100 < 10) {
-                target.addPotionEffect(PotionEffect(PotionEffectType.WITHER, 5, 1))
+                target.addPotionEffect(PotionEffect(PotionEffectType.WITHER, 3, 0))
             }
         }
     }

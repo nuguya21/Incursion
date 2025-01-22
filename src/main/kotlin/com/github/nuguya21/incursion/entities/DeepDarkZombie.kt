@@ -14,7 +14,7 @@ import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
 import java.util.*
 
-class DeepDarkZombie: Spawnable {
+class DeepDarkZombie: Monster {
     override val name: String = "deep_dark_zombie"
     override val type: EntityType = EntityType.ZOMBIE
     override val damage: Double = 4.0
@@ -34,7 +34,7 @@ class DeepDarkZombie: Spawnable {
 
     override fun onAttack(entity: Entity, target: Entity) {
         if (target is LivingEntity) {
-            target.addPotionEffect(PotionEffect(PotionEffectType.HUNGER, 5, 0))
+            target.addPotionEffect(PotionEffect(PotionEffectType.HUNGER, 7, 0))
             if (Random().nextDouble() * 100 < 20) {
                 target.addPotionEffect(PotionEffect(PotionEffectType.POISON, 5, 1))
             }

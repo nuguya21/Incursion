@@ -18,10 +18,9 @@ class Spawner {
         return data.containsKey(biome)
     }
 
-    @Suppress("UnstableApiUsage", "removal")
-    fun spawn(location: Location): Boolean {
+    fun naturallyGenerate(location: Location): Boolean {
         val biome = location.block.biome
-        val name = biome.name().lowercase()
+        val name = biome.key.key
         if (isSpawning(name)) {
             if (getSpawnData(name).isEmpty()) return false
             val data = getSpawnData(name)
@@ -31,11 +30,17 @@ class Spawner {
                 temp += value
                 if (random < temp) {
                     val spawnable = key.getDeclaredConstructor().newInstance()
-                    val entity = spawnable.spawn(location)
-                    spawned[entity.uniqueId] = spawnable
+                    val entity = spawnable.naturallySpawn(location)
+                    entity?.let { spawned[it.uniqueId] = spawnable }
                 }
             }
             return true
         } else return false
+    }
+
+    fun spawn(location: Location, clazz: Class<out Spawnable>) {
+        val spawnable = clazz.getDeclaredConstructor().newInstance()
+        val entity = spawnable.spawn(location)
+        spawned[entity.uniqueId] = spawnable
     }
 }
